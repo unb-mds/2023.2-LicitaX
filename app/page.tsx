@@ -87,7 +87,7 @@ export default function Home() {
           </h2>
           <p>
             Instantly deploy your Next.js site to a shareable URL with Vercel.
-            Mais um teste de CI (build e deploy)
+            Teste com uma branch separada pra feature
           </p>
         </a>
       </div>
