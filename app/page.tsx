@@ -86,7 +86,7 @@ export default function Home() {
             Deploy <span>-&gt;</span>
           </h2>
           <p>
-            Rafael Bonach
+            Rafael Bonach, agora com os arquivos!
           </p>
         </a>
       </div>
