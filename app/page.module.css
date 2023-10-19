@@ -13,3 +13,12 @@
   font-weight: bold;
   font-family: 'Roboto', sans-serif;
 }
+
+.cearaParagraph {
+  margin-bottom: 20px; /* Ajuste o valor conforme necessário para criar o espaço desejado. */
+}
+
+.blueLink {
+  color: #0071ff; /* Cor azul desejada */
+  text-decoration: underline;
+}
