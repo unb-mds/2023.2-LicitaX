@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import Logo from '../assets/svgs/logobranca.svg'; // Importe a imagem
+//import Logo from '../assets/svgs/logobranca.svg'; // Importe a imagem
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -22,10 +22,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       {/* Barra de cabeçalho personalizável */}
       <header style={{ background: '#222831', width: '100%' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', padding: '16px' }}>
-          <div>
-            {/* Logo personalizável */}
-            <img src={Logo} alt="Logo" style={{ maxWidth: '100px' }} />
-          </div>
           <div>
             {/* Botões personalizáveis */}
             <button style={{ color: '#EEEEE', marginRight: '10px' }}>Home</button>
