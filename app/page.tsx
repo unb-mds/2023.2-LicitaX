@@ -11,7 +11,7 @@ export default function Home() {
         <p>
           <span>
             <a href="https://unb-mds.github.io/2023-2-Squad07/" target="_blank" rel="noopener noreferrer">
-               Para saber mais sobre o projeto clique <span className={styles.blueLink}>aqui</span>
+               Para saber mais sobre o projeto clique <span className={styles.blueLink}>aqui!</span>
             </a>
             <br />
             <a href="https://github.com/unb-mds/Squad07-front" target="_blank" rel="noopener noreferrer">
