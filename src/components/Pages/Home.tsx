@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useState, useEffect } from "react"
+
 interface TitleProps {
   municipio: string;
   ano: string;
@@ -8,6 +9,7 @@ interface TitleProps {
 export const Home = ({ municipio, ano }: TitleProps) => {
   const [titleText, setTitleText] = useState("Brasília");
   const [bids, setBids] = useState<any>([]);
+
   const buildTitle = () => {
     fetch(`https://raw.githubusercontent.com/unb-mds/2023-2-Squad07/main/public/resultados.json`, {
       method: 'GET',
@@ -21,9 +23,17 @@ export const Home = ({ municipio, ano }: TitleProps) => {
     if (municipio === 'geral') {
       setTitleText('Ceará')
     }
-  }, [setTitleText, municipio]);
+  }, [municipio]);
 
-  console.log()
+  // Função para formatar a saída dos avisos
+  const formatAviso = (bid: any) => {
+    return (
+      <div className="aviso">
+        No dia <span className="text-red-500">{bid.pdf_filename.replace(/APRECE_(\d{2})_(\d{2})_(\d{2}).pdf/, '$1/$2/$3')}</span> houveram <span className="text-red-500">{bid.num_avisos_licitacao} avisos de licitação</span>.
+      </div>
+    );
+  };
+
   return (
     <div className="flex">
       <div className="bg-teal-500 w-80 h-screen p-4">
@@ -53,8 +63,7 @@ export const Home = ({ municipio, ano }: TitleProps) => {
         <div className="font-semibold">
           {bids.map((bid: any, i: number) => (
             <div key={i} className="flex-row pt-5 pb-5">
-              <>{bid.pdf_filename}</>
-              <>{bid.num_avisos_licitacao}</>
+              {formatAviso(bid)}
             </div>
           ))}
         </div>
