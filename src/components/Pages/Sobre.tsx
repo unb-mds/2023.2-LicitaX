@@ -14,6 +14,37 @@ export const Sobre = () => {
                     src="https://i.pinimg.com/originals/84/a7/86/84a786798c453d6a536f31cba73e5409.png"
                 />
             </div>
+            <div>
+                <h1 className="p-20 text-2xl 2xl:text-3xl 3xl:text-[2.4375rem]  font-semibold lg:w-[42.93rem] leading-10">Conheça um pouco mais sobre o projeto</h1>
+               <section className="p-10 flex flex-col gap-y-6">
+                <p className="">
+                    <strong>Jose Andre Rabelo:  </strong>
+                      discente do curso de Engenharia de Software da UnB campus FGA
+                </p>
+                <p className=" font-normal">
+                    <strong>Giovana Barbosa da Silva:  </strong>
+                      discente do curso de Engenharia de Software da UnB campus FGA
+                </p>
+                <p className="font-normal">
+                    <strong>Samara Leticia Alves:  </strong>
+                      discente do curso de Engenharia de Software da UnB campus FGA
+                </p>
+                <p className="font-normal">
+                    <strong>Julia Takaki Neves:  </strong>
+                      discente do curso de Engenharia de Software da UnB campus FGA
+                </p>
+                <p className="font-normal">
+                    <strong>Rafael Oliveira Bonach:  </strong>
+                      discente do curso de Engenharia de Software da UnB campus FGA
+                </p>
+                <div className="bg-white p-9 rounded-3x1">
+                <p>O projeto tem como principal objetivo coletar, transformar em texto os diarios oficiais do Ceara</p>
+                <p>Ele separa por municipios os diarios oficiais e entre atos normativos </p>
+                <p>Tambem iremos ultilizar algoritmos computacionais para classificar e extrair informacoes </p>
+                <p> Mais especificamente, o nosso foco sera em abertura de edital de licitacao.</p>
+            </div>
+                </section>
+            </div>
         </div>
     )
 }
