@@ -50,12 +50,12 @@ export const Home = ({ municipio, ano }: TitleProps) => {
       <div className="p-4 text-2xl 2xl:text-3xl 3xl:text-[2.4375rem]  font-semibold lg:w-[42.93rem] leading-10">
         {ano === "geral" ? (
           <>
-            Acompanhe a quantidade de avisos de licitação que ocorreram em
+            Acompanhe a quantidade de avisos de licitação que ocorreram no
             <span className="text-[#4AA381]">{(" " + titleText) as string}</span>
           </>
         ) : (
           <>
-            Acompanhe a quantidade de avisos de licitação que ocorreram em
+            Acompanhe a quantidade de avisos de licitação que ocorreram no
             <span className="text-[#4AA381]">{(" " + titleText) as string} - {(" " + ano) as string}</span>
           </>
         )}
