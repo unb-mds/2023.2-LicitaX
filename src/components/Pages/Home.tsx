@@ -36,9 +36,9 @@ export const Home = ({ municipio, ano }: TitleProps) => {
 
   return (
     <div className="flex">
-      <div className="bg-teal-500 w-80 h-screen p-4">
-        <p className="text-white font-bold text-2xl mt-4 mb-4">Confira a quantidade de avisos de licitação nos municípios do Ceará.</p>
-        <p className="text-white mt-4">Este projeto foi realizado pelo Squad 07 durante o segundo semestre de 2023 na disciplina Métodos de Desenvolvimento de Software da Universidade de Brasília.</p>
+      <div className="bg-[#7f1d1d]  w-80 h-screen p-4 text-white">
+        <p className="text-white font-bold text-2xl mt-4 mb-4">Confira as Licitação dos municípios do Ceará.</p>
+        <p className="text-white mt-4">Coletamos os diários oficiais municipais, separamos por municipios e analisamos as licitações. Com foco em simplicidade e replicabilidade, queremos impactar a forma como monitoramos atos do executivos nos municipios do Ceara</p>
         {/* Logo da Universidade com dois espaços */}
         <Image
           alt="logo-unb"
