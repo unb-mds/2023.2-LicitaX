@@ -3,7 +3,7 @@ import Image from "next/image";
 export const Sobre = () => {
     return (
         <div className="flex">
-            <div className="bg-teal-500 w-80 h-screen p-4">
+            <div className="bg-[#7f1d1d]  w-80 h-screen p-4 text-white"> 
                 <p className="text-white font-bold text-2xl mt-4 mb-4">Confira a quantidade de avisos de licitação nos municípios do Ceará.</p>
                 <p className="text-white mt-4">Este projeto foi realizado pelo Squad 07 durante o segundo semestre de 2023 na disciplina Métodos de Desenvolvimento de Software da Universidade de Brasília.</p>
                 {/* Logo da Universidade com dois espaços */}
@@ -15,7 +15,7 @@ export const Sobre = () => {
                 />
             </div>
             <div>
-                <h1 className="p-20 text-2xl 2xl:text-3xl 3xl:text-[2.4375rem]  font-semibold lg:w-[42.93rem] leading-10">Conheça um pouco mais sobre o projeto</h1>
+                <h1 className="p-20 text-2xl 2xl:text-3xl 3xl:text-[2.4375rem]  font-semibold lg:w-[42.93rem] leading-10">Conheça um pouco mais sobre os desenvolvedores do projeto</h1>
                <section className="p-10 flex flex-col gap-y-6">
                 <p className="">
                     <strong>Jose Andre Rabelo:  </strong>
@@ -39,11 +39,14 @@ export const Sobre = () => {
                 </p>
                 <div className="bg-white p-9 rounded-3x1">
                 <p>O projeto tem como principal objetivo coletar, transformar em texto os diarios oficiais do Ceara</p>
-                <p>Ele separa por municipios os diarios oficiais e entre atos normativos </p>
+                <p>Alem da separaçao do conteudo por municipio, e separado por atos normativos </p>
                 <p>Tambem iremos ultilizar algoritmos computacionais para classificar e extrair informacoes </p>
                 <p> Mais especificamente, o nosso foco sera em abertura de edital de licitacao.</p>
-            </div>
+                </div>
                 </section>
+            </div>
+            <div>
+            
             </div>
         </div>
     )
