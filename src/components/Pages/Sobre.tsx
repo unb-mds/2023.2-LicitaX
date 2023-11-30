@@ -18,7 +18,7 @@ export const Sobre = () => {
                 <h1 className="p-20 text-2xl 2xl:text-3xl 3xl:text-[2.4375rem]  font-semibold lg:w-[42.93rem] leading-10">Conheça um pouco mais sobre os desenvolvedores do projeto</h1>
                <section className="p-10 flex flex-col gap-y-6">
                 <p className="">
-                    <strong>Jose Andre Rabelo:  </strong>
+                    <strong>José André Rabelo:  </strong>
                       discente do curso de Engenharia de Software da UnB campus FGA
                 </p>
                 <p className=" font-normal">
@@ -37,16 +37,9 @@ export const Sobre = () => {
                     <strong>Rafael Oliveira Bonach:  </strong>
                       discente do curso de Engenharia de Software da UnB campus FGA
                 </p>
-                <div className="bg-white p-9 rounded-3x1">
-                <p>O projeto tem como principal objetivo coletar, transformar em texto os diarios oficiais do Ceara</p>
-                <p>Alem da separaçao do conteudo por municipio, e separado por atos normativos </p>
-                <p>Tambem iremos ultilizar algoritmos computacionais para classificar e extrair informacoes </p>
-                <p> Mais especificamente, o nosso foco sera em abertura de edital de licitacao.</p>
-                </div>
                 </section>
             </div>
             <div>
-            
             </div>
         </div>
     )
