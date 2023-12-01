@@ -35,7 +35,7 @@ export const Home: React.FC<TitleProps> = ({ ano }) => {
 
   return (
     <div className="flex">
-      <div className="bg-[#7f1d1d] w-80 h-screen p-4 text-white">
+      <div className="bg-[#410c0c] w-80 h-screen p-4 text-white">
         <p className="text-white font-bold text-2xl mt-4 mb-4">Confira a quantidade de avisos de licitação nos municípios do Ceará.</p>
         <p className="text-white mt-4">Este projeto foi realizado pelo Squad 07 durante o segundo semestre de 2023 na disciplina Métodos de Desenvolvimento de Software da Universidade de Brasília.</p>
         <Image
@@ -45,14 +45,28 @@ export const Home: React.FC<TitleProps> = ({ ano }) => {
           src="https://i.pinimg.com/originals/84/a7/86/84a786798c453d6a536f31cba73e5409.png"
         />
       </div>
-      <div className="p-4 text-2xl 2xl:text-3xl 3xl:text-[2.4375rem] font-semibold lg:w-[42.93rem] leading-10">
-        <div>
-          <label>Selecione o Município:</label>
+      <div className="p-4 text-2xl 2xl:text-3xl 3xl:text-[2.4375rem] font-semibold lg:w-[42.93rem] leading-10 ml-32">
+        <div className="info-text">
+          {ano === "geral" ? (
+            <>
+              Acompanhe a quantidade de avisos de licitação que ocorreram em todos os meses de 2023 em
+              <span className="text-[#410c0c]">{(" " + titleText) as string}</span>
+            </>
+          ) : (
+            <>
+              Acompanhe a quantidade de avisos de licitação que ocorreram em 2023 em
+              <span className="text-[#4AA381]">{(" " + titleText) as string} - {(" " + ano) as string}</span>
+            </>
+          )}
+        </div>
+        <div className="municipio-selector mt-4">
+          <label className="block text-sm font-medium text-gray-700">Selecione o Município:</label>
           <select
             onChange={handleMunicipioChange}
             value={selectedMunicipio || ''}
+            className="mt-1 block w-full p-2 border rounded-md focus:outline-none focus:border-blue-500"
           >
-            <option value="">Todos</option>
+            <option value="">Selecione</option>
             {municipios.map((municipio) => (
               <option key={municipio} value={municipio}>
                 {municipio}
@@ -60,20 +74,11 @@ export const Home: React.FC<TitleProps> = ({ ano }) => {
             ))}
           </select>
         </div>
-        {ano === "geral" ? (
-          <>
-            Acompanhe a quantidade de avisos de licitação que ocorreram em todos os meses de 2023 em
-            <span className="text-[#802323]">{(" " + titleText) as string}</span>
-          </>
-        ) : (
-          <>
-            Acompanhe a quantidade de avisos de licitação que ocorreram em 2023 em
-            <span className="text-[#4AA381]">{(" " + titleText) as string} - {(" " + ano) as string}</span>
-          </>
-        )}
-        <br />
-        <GraphComponent municipio={selectedMunicipio || ''} />
+        <div className="graph-component mt-8">
+          <GraphComponent municipio={selectedMunicipio || ''} />
+        </div>
       </div>
     </div>
   );
 };
+

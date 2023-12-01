@@ -3,7 +3,7 @@ import Image from "next/image";
 export const Sobre = () => {
     return (
         <div className="flex">
-            <div className="bg-[#7f1d1d]  w-80 h-screen p-4 text-white"> 
+            <div className="bg-[#410c0c]  w-80 h-screen p-4 text-white"> 
                 <p className="text-white font-bold text-2xl mt-4 mb-4">Confira a quantidade de avisos de licitação nos municípios do Ceará.</p>
                 <p className="text-white mt-4">Este projeto foi realizado pelo Squad 07 durante o segundo semestre de 2023 na disciplina Métodos de Desenvolvimento de Software da Universidade de Brasília.</p>
                 {/* Logo da Universidade com dois espaços */}
