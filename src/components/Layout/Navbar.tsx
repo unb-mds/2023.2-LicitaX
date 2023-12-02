@@ -16,6 +16,7 @@ export const Navbar = () => {
       <div className="flex space-x-4">
         {/* Links de Navegação Interna com fonte mais negrito (bold) e espaço maior entre eles */}
         <Link href="/" className="text-white hover:text-gray-300 text-lg font-semibold ml-4">Home</Link>
+        <Link href="/pesquisar" className="text-white hover:text-gray-300 text-lg font-semibold ml-4">Pesquisar</Link>
         <Link href="/sobre" className="text-white hover:text-gray-300 text-lg font-semibold ml-4">Sobre</Link>
         <Link
           href="https://github.com/unb-mds/2023.2-LicitaX"
