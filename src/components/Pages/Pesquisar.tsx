@@ -1,18 +1,34 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from 'axios';
 
 export const Pesquisar = () => {
-  const [assunto, setAssunto] = useState("");
-  const [municipio, setMunicipio] = useState("");
+  const [tema, setTema] = useState("");
+  const [codigoIBGEMunicipio, setCodigoIBGEMunicipio] = useState("");
   const [dataInicial, setDataInicial] = useState("");
   const [dataFinal, setDataFinal] = useState("");
+  const [resultados, setResultados] = useState<{ total_gazettes: number, gazettes: Array<any> } | null>(null);
 
   const handleSearch = async () => {
-    // Implemente a chamada à API usando os estados (assunto, municipio, dataInicial, dataFinal)
-    // Certifique-se de utilizar a URL correta da API.
-
     try {
-      // Código para chamar a API aqui
+      const apiUrl = `https://queridodiario.ok.org.br/api/gazettes?querystring=${tema}&territory_ids=${codigoIBGEMunicipio}&published_since=${dataInicial}&published_until=${dataFinal}`;
+
+      console.log("API URL:", apiUrl);
+
+      const response = await axios.get(apiUrl);
+
+      if (response.status === 200) {
+        const data = response.data;
+        console.log("API Response:", data);
+
+        // Atualiza o estado diretamente com a resposta da API
+        setResultados(data);
+
+        // Remove o log abaixo, pois o estado pode não ser atualizado imediatamente
+        // console.log("Novo estado resultados:", resultados);
+      } else {
+        throw new Error(`Erro na resposta da API: ${response.statusText}`);
+      }
     } catch (error) {
       console.error("Erro ao chamar a API:", error);
     }
@@ -35,54 +51,77 @@ export const Pesquisar = () => {
         />
       </div>
       <div className="flex flex-col items-center ml-16">
-      <div className="flex space-x-6 mt-10">
-        <input
-          type="text"
-          placeholder="Sobre o que você quer saber?"
-          value={assunto}
-          onChange={(e) => setAssunto(e.target.value)}
-          className="p-2 border border-gray-300 rounded"
-        />
-        <select
-          value={municipio}
-          onChange={(e) => setMunicipio(e.target.value)}
-          className="p-2 border border-gray-300 rounded"
+        <div className="flex space-x-6 mt-10">
+          <input
+            type="text"
+            placeholder="Sobre o que você quer saber?"
+            value={tema}
+            onChange={(e) => setTema(e.target.value)}
+            className="p-2 border border-gray-300 rounded"
+          />
+          <select
+            value={codigoIBGEMunicipio}
+            onChange={(e) => setCodigoIBGEMunicipio(e.target.value)}
+            className="p-2 border border-gray-300 rounded"
+          >
+            <option value="">Selecione o Município</option>
+            <option value="2312908">Sobral (CE)</option> {/* Código IBGE de Sobral */}
+            <option value="2305233">Horizonte (CE)</option> {/* Código IBGE de Horizonte */}
+          </select>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Data Inicial:
+            </label>
+            <input
+              type="date"
+              value={dataInicial}
+              onChange={(e) => setDataInicial(e.target.value)}
+              className="p-2 border border-gray-300 rounded"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Data Final:
+            </label>
+            <input
+              type="date"
+              value={dataFinal}
+              onChange={(e) => setDataFinal(e.target.value)}
+              className="p-2 border border-gray-300 rounded"
+            />
+          </div>
+        </div>
+        <button
+          onClick={handleSearch}
+          className="mt-4 bg-[#410c0c] text-white p-2 rounded hover:bg-[#832929]"
+          style={{ width: "200px" }}
         >
-          <option value="">Selecione o Município</option>
-          <option value="Sobral">Sobral (CE)</option>
-          <option value="Horizonte">Horizonte (CE)</option>
-        </select>
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Data Inicial:
-          </label>
-          <input
-            type="date"
-            value={dataInicial}
-            onChange={(e) => setDataInicial(e.target.value)}
-            className="p-2 border border-gray-300 rounded"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Data Final:
-          </label>
-          <input
-            type="date"
-            value={dataFinal}
-            onChange={(e) => setDataFinal(e.target.value)}
-            className="p-2 border border-gray-300 rounded"
-          />
-        </div>
+          Pesquisar
+        </button>
+        {/* Exibir os resultados da API, se disponíveis */}
+        {resultados && resultados.gazettes && (
+          <div>
+            {/* Ajuste na propriedade abaixo */}
+            <p>O assunto "{tema}" foi citado {resultados.total_gazettes} vezes no período:</p>
+            {/* Iterar sobre os excertos e exibir as informações desejadas */}
+            {resultados.gazettes.map((excerto, index) => (
+              <div key={index} className="border p-4 mt-4">
+                <p>Data: {excerto.date}</p>
+                <p>Edição: {excerto.edition}</p>
+                <p>Excerto:</p>
+                <pre>{excerto.excerpts.join("\n")}</pre>
+                <div className="mt-2">
+                  <a href={excerto.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 mr-4">Baixar PDF</a>
+                  <a href={excerto.txt_url} target="_blank" rel="noopener noreferrer" className="text-blue-500">Baixar TXT</a>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+        {resultados && resultados.gazettes && resultados.gazettes.length === 0 && (
+          <p>Nenhum resultado encontrado para a pesquisa.</p>
+        )}
       </div>
-      <button
-        onClick={handleSearch}
-        className="mt-4 bg-[#410c0c] text-white p-2 rounded hover:bg-[#832929]"
-        style={{ width: "200px" }}
-      >
-        Pesquisar
-      </button>
-    </div>
     </div>
   );
 };

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "apexcharts": "^3.44.0",
+    "axios": "^1.6.2",
     "chart.js": "^4.4.0",
     "clsx": "2.0.0",
     "next": "13.5.6",
