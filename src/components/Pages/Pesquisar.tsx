@@ -98,12 +98,9 @@ export const Pesquisar = () => {
         >
           Pesquisar
         </button>
-        {/* Exibir os resultados da API, se disponíveis */}
         {resultados && resultados.gazettes && (
           <div>
-            {/* Ajuste na propriedade abaixo */}
-            <p>O assunto "{tema}" foi citado {resultados.total_gazettes} vezes no período:</p>
-            {/* Iterar sobre os excertos e exibir as informações desejadas */}
+            <p>O assunto &quot;{tema}&quot; foi citado {resultados.total_gazettes} vezes no período:</p>
             {resultados.gazettes.map((excerto, index) => (
               <div key={index} className="border p-4 mt-4">
                 <p>Data: {excerto.date}</p>
