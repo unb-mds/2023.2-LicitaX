@@ -8,24 +8,23 @@ export const Pesquisar = () => {
   const [dataInicial, setDataInicial] = useState("");
   const [dataFinal, setDataFinal] = useState("");
   const [resultados, setResultados] = useState<{ total_gazettes: number, gazettes: Array<any> } | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const handleSearch = async () => {
     try {
-      const apiUrl = `https://queridodiario.ok.org.br/api/gazettes?querystring=${tema}&territory_ids=${codigoIBGEMunicipio}&published_since=${dataInicial}&published_until=${dataFinal}`;
-
+      const pageSize = 10; // Número de resultados por página
+      const apiUrl = `https://queridodiario.ok.org.br/api/gazettes?querystring=${tema}&territory_ids=${codigoIBGEMunicipio}&published_since=${dataInicial}&published_until=${dataFinal}&size=${pageSize}&offset=${(currentPage - 1) * pageSize}`;
+  
       console.log("API URL:", apiUrl);
-
+  
       const response = await axios.get(apiUrl);
-
+  
       if (response.status === 200) {
         const data = response.data;
         console.log("API Response:", data);
-
+  
         // Atualiza o estado diretamente com a resposta da API
         setResultados(data);
-
-        // Remove o log abaixo, pois o estado pode não ser atualizado imediatamente
-        // console.log("Novo estado resultados:", resultados);
       } else {
         throw new Error(`Erro na resposta da API: ${response.statusText}`);
       }
@@ -34,9 +33,17 @@ export const Pesquisar = () => {
     }
   };
 
+  useEffect(() => {
+    handleSearch();
+  }, [currentPage]); // Dispara a pesquisa quando a currentPage muda
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
   return (
     <div className="flex">
-      <div className="bg-[#410c0c] w-80 h-screen p-4 text-white">
+      <div className="bg-[#410c0c] w-80 p-4 text-white">
         <p className="text-white font-bold text-2xl mt-4 mb-4">
           Em que você tem interesse?
         </p>
@@ -100,7 +107,9 @@ export const Pesquisar = () => {
         </button>
         {resultados && resultados.gazettes && (
           <div>
-            <p>O assunto &quot;{tema}&quot; foi citado {resultados.total_gazettes} vezes no período:</p>
+            <p>
+              O assunto &quot;{tema}&quot; foi citado {resultados.total_gazettes} vezes no período:
+            </p>
             {resultados.gazettes.map((excerto, index) => (
               <div key={index} className="border p-4 mt-4">
                 <p>Data: {excerto.date}</p>
@@ -108,11 +117,25 @@ export const Pesquisar = () => {
                 <p>Excerto:</p>
                 <pre>{excerto.excerpts.join("\n")}</pre>
                 <div className="mt-2">
-                  <a href={excerto.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 mr-4">Baixar PDF</a>
-                  <a href={excerto.txt_url} target="_blank" rel="noopener noreferrer" className="text-blue-500">Baixar TXT</a>
+                  <a href={excerto.url} target="_blank" rel="noopener noreferrer" className="text-red-900 mr-4">
+                    Baixar PDF
+                  </a>
+                  <a href={excerto.txt_url} target="_blank" rel="noopener noreferrer" className="text-red-900">
+                    Baixar TXT
+                  </a>
                 </div>
               </div>
             ))}
+            {/* Paginação */}
+            {resultados.total_gazettes > 10 && (
+              <div className="mt-4">
+                {Array.from({ length: Math.ceil(resultados.total_gazettes / 10) }, (_, i) => i + 1).map((page) => (
+                  <button key={page} onClick={() => handlePageChange(page)} className="mx-2 p-2 bg-[#d5d4d8] rounded">
+                    {page}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         )}
         {resultados && resultados.gazettes && resultados.gazettes.length === 0 && (
