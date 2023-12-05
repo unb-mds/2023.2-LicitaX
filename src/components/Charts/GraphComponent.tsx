@@ -24,7 +24,7 @@ const GraphComponent: React.FC<GraphProps> = ({ municipio }) => {
         const data: MunicipioData[] = await response.json();
     
         const chartOptions = {
-          colors: ['#222831'], 
+          colors: ['#410c0c'], 
           xaxis: {
             categories: data.map((item) => item.month),
           },
