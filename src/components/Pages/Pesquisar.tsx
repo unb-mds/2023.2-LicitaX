@@ -45,10 +45,10 @@ export const Pesquisar = () => {
     <div className="flex">
       <div className="bg-[#410c0c] w-80 p-4 text-white">
         <p className="text-white font-bold text-2xl mt-4 mb-4">
-          Em que você tem interesse?
+          Encontre licitações especifícas
         </p>
         <p className="text-white mt-4">
-          Aqui você pode pesquisar sobre qualquer tema e verificar cada vez que ele foi discutido em um determinado intervalo de tempo nos diários oficiais dos municípios de Sobral e Horizonte, no Ceará.
+          Aqui você pode explorar licitações específicas nos municípios de Sobral e Horizonte, no Ceará, pesquisando por temas relacionados e limitando o escopo para o período que você desejar.
         </p>
         <Image
           alt="logo-unb"
